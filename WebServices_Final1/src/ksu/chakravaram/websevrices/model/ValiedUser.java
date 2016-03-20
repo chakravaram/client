@@ -19,7 +19,7 @@ public class ValiedUser {
 	}
 	
 	
-	
+	//to check changes
 	
 	public int getFlag() {
 		return flag;
