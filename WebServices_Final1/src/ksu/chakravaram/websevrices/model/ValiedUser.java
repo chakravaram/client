@@ -19,6 +19,8 @@ public class ValiedUser {
 	}
 	
 	
+	
+	
 	public int getFlag() {
 		return flag;
 	}
