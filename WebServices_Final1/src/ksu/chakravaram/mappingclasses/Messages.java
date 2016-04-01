@@ -20,10 +20,11 @@ public class Messages {
 	@GeneratedValue
 	private int tmsgs;
 	private int from_profile_id;
-	private String message;
-	
+	private String message;	
 	private int to_profile_id;
 	private Date time;
+	
+	
 	public int getFrom_profile_id() {
 		return from_profile_id;
 	}

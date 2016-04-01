@@ -1,4 +1,4 @@
-package ksu.chakravaram.websevrices.resources;
+	package ksu.chakravaram.websevrices.resources;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import ksu.chakravaram.DataAccess.DataAccess;
+import ksu.chakravaram.mappingclasses.Likes;
 import ksu.chakravaram.mappingclasses.Messages;
 import ksu.chakravaram.mappingclasses.Posts;
 import ksu.chakravaram.mappingclasses.Profiles;
@@ -53,7 +54,8 @@ public class MessageResource {
 	public List<Messages> getMsg(@PathParam("profile_id") String profile_id)
 	{
 		int pid=Integer.parseInt(profile_id);
-		return dao.getMessages(pid);
+		List<Messages> msgs=dao.getMessages(pid);
+		return msgs;
 	}
 	
 	@DELETE
@@ -86,6 +88,24 @@ public class MessageResource {
 		IntegerResponse res=a.createPost(pof);
 		return res;
 	}
+	
+	
+	
+	@POST
+	@Path("/sendmsg")
+	@Consumes({MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_XML})
+	public IntegerResponse newMsg(Messages msg)
+	{
+		IntegerResponse res=a.newMsg(msg);
+		return res;
+	}
+	
+	
+	
+	
+	
+	
 
 	@GET
 	@Path("/allposts")
@@ -95,6 +115,58 @@ public class MessageResource {
 		System.out.println(""+header);
 		return dao.getAllPosts();
 	
+	}
+	
+	@GET
+	@Path("/allprofiles")
+	@Produces({MediaType.APPLICATION_XML})
+	public List<Profiles> getAllProfiles()
+	{
+		//System.out.println(""+header);
+		return dao.getAllProfiles();
+	
+	}
+	
+
+	@GET
+	@Path("/isliked/{profile_id}/{post_id}")
+	@Produces({MediaType.APPLICATION_XML})
+	public IntegerResponse isLiked(@PathParam("post_id") String post_id,@PathParam("profile_id") String profile_id)
+	{
+		
+		IntegerResponse v= a.isLiked(profile_id,post_id);
+		return v;
+		
+	}
+	
+	@GET
+	@Path("/like/{profile_id}/{post_id}")
+	
+	@Produces({MediaType.APPLICATION_XML})
+	public IntegerResponse like(@PathParam("post_id") String post_id,@PathParam("profile_id") String profile_id)
+	{
+		IntegerResponse res=a.Like(profile_id,post_id);
+		return res;
+	}
+	
+	@GET
+	@Path("/haslikes/{post_id}")
+	
+	@Produces({MediaType.APPLICATION_XML})
+	public IntegerResponse allike(@PathParam("post_id") String post_id)
+	{
+		IntegerResponse res=a.hasLikes(post_id);
+		return res;
+	}
+	
+	@GET
+	@Path("/getlikes/{post_id}")
+	
+	@Produces({MediaType.APPLICATION_XML})
+	public List<Likes> getlikes(@PathParam("post_id") String post_id)
+	{
+		List<Likes> res=dao.getLikes(Integer.parseInt(post_id.trim()));
+		return res;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package ksu.chakravaram.websevrices.services;
 
 import ksu.chakravaram.DataAccess.DataAccess;
+import ksu.chakravaram.mappingclasses.Messages;
 import ksu.chakravaram.mappingclasses.Posts;
 import ksu.chakravaram.mappingclasses.Profiles;
 import ksu.chakravaram.websevrices.model.IntegerResponse;
@@ -54,6 +55,52 @@ public class MessageService {
 		 DataAccess a =new DataAccess();
 		
 		 int c=a.createPost(pid);
+		 IntegerResponse i=new IntegerResponse(c);
+		 return i;
+		 
+	}
+	
+	public IntegerResponse newMsg(Messages msg)
+	{
+		 DataAccess a =new DataAccess();
+		
+		 int c=a.sendMsg(msg);
+		 IntegerResponse i=new IntegerResponse(c);
+		 return i;
+		 
+	}
+	
+	
+	public IntegerResponse isLiked(String pfid, String pid)
+	{
+		 DataAccess a =new DataAccess();
+		 int pffid= Integer.parseInt(pfid.trim());
+		 int piid=Integer.parseInt(pid.trim());
+		
+		 int c=a.isLiked(pffid,piid);
+		 IntegerResponse i=new IntegerResponse(c);
+		 return i;
+		 
+	}
+	
+	public IntegerResponse Like(String pfid, String pid)
+	{
+		 DataAccess a =new DataAccess();
+		 int pffid= Integer.parseInt(pfid.trim());
+		 int piid=Integer.parseInt(pid.trim());
+		
+		 int c=a.like(pffid,piid);
+		 IntegerResponse i=new IntegerResponse(c);
+		 return i;
+		 
+	}
+	public IntegerResponse hasLikes(String pid)
+	{
+		 DataAccess a =new DataAccess();
+		
+		 int piid=Integer.parseInt(pid.trim());
+		
+		 int c=a.hasLikes(piid);
 		 IntegerResponse i=new IntegerResponse(c);
 		 return i;
 		 
