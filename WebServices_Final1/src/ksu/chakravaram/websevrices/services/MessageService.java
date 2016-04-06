@@ -1,6 +1,7 @@
 package ksu.chakravaram.websevrices.services;
 
 import ksu.chakravaram.DataAccess.DataAccess;
+import ksu.chakravaram.mappingclasses.Comments;
 import ksu.chakravaram.mappingclasses.Messages;
 import ksu.chakravaram.mappingclasses.Posts;
 import ksu.chakravaram.mappingclasses.Profiles;
@@ -70,6 +71,16 @@ public class MessageService {
 		 
 	}
 	
+	public IntegerResponse newCmt(Comments cmt)
+	{
+		 DataAccess a =new DataAccess();
+		
+		 int c=a.newCmt(cmt);
+		 IntegerResponse i=new IntegerResponse(c);
+		 return i;
+		 
+	}
+	
 	
 	public IntegerResponse isLiked(String pfid, String pid)
 	{
@@ -105,5 +116,7 @@ public class MessageService {
 		 return i;
 		 
 	}
+	
+	
 	
 }

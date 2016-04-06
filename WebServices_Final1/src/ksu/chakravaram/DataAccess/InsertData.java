@@ -1,6 +1,11 @@
 package ksu.chakravaram.DataAccess;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Date;
+
+
+
 
 
 
@@ -11,6 +16,7 @@ import org.hibernate.cfg.Configuration;
 
 import ksu.chakravaram.mappingclasses.Messages;
 import ksu.chakravaram.mappingclasses.Posts;
+import ksu.chakravaram.mappingclasses.Profiles;
 import ksu.chakravaram.websevrices.model.ValiedUser;
 import ksu.chakravaram.websevrices.services.MessageService;
 
@@ -34,12 +40,34 @@ public class InsertData {
 		st.setTo_profile_id(101);
 		st.setTime(new Date());
 	*/
-		Posts st=new Posts();
+		/*	Posts st=new Posts();
 		st.setPost("this is a post from 101");
 		st.setPost_id(301);
 		st.setProfile_id(101);
 		st.setTime(new Date());
 		
+		*/
+		
+		Profiles p=new Profiles();
+		File file = new File("C:/Users/chakravaram/Desktop/vx.JPG");
+        byte[] bFile = new byte[(int) file.length()];
+        
+        try {
+	     FileInputStream fileInputStream = new FileInputStream(file);
+	     //convert file into array of bytes
+	     fileInputStream.read(bFile);
+	     fileInputStream.close();
+        } catch (Exception e) {
+	     e.printStackTrace();
+        }
+        p.setFirstname("vij");
+        p.setLastname("sdd");
+        p.setDob(new Date());
+        p.setPassword("123");
+        p.setPhno(123);
+        p.setProfile_id(01);
+        p.setImage(bFile);
+        
 		
 		Configuration cfg=new Configuration().configure();
 	
@@ -53,7 +81,7 @@ public class InsertData {
 	
 		Session f=sf.openSession();
 		System.out.println("vijay1");
-	f.save(st);
+	f.save(p);
 	System.out.println("vijay12");
 	f.beginTransaction().commit();
 		f.close();

@@ -1,12 +1,21 @@
 package ksu.chakravaram.mappingclasses;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@Entity
 
 public class Comments {
 
 	public Comments() {
 		// TODO Auto-generated constructor stub
 	}
-
+	@Id
+	@GeneratedValue
+	private int tcmts;
 	
 	private int profile_id;
 	private int post_id;

@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import ksu.chakravaram.mappingclasses.Comments;
 import ksu.chakravaram.mappingclasses.Likes;
 import ksu.chakravaram.mappingclasses.Messages;
 import ksu.chakravaram.mappingclasses.Posts;
@@ -487,9 +488,70 @@ public class DataAccess {
     
     
     
+    public int newCmt(Comments p)
+    {
+    	int flag=0;
+		try{
+			
+			Configuration cfg=new Configuration().configure("./hibernate.cfg.xml");				
+			SessionFactory sf=cfg.buildSessionFactory();			
+	        Session f=sf.openSession();	    
+	        
+		      
+	         
+	       
+			f.save(p);
+           f.beginTransaction().commit();
+			f.close();			
+			System.out.println(" succeessfully posted!!");
+			flag=1;
+	         
+			
+			}
+		catch(Exception e)
+		{
+			System.out.println("Error in newCmt Data Acess"+e);
+		}
+		return flag;
+    }
     
     
     
+    
+    public List<Comments> getComments(int pid)
+    {
+    	List<Comments> p=null;
+		try{
+			
+			Configuration cfg=new Configuration().configure("./hibernate.cfg.xml");				
+			SessionFactory sf=cfg.buildSessionFactory();			
+	        Session f=sf.openSession();	    
+	        Query query1=f.createQuery("select e from Comments e where e.post_id=?");
+	        query1.setParameter(0, pid);
+	               p= query1.list();
+	               f.close();	
+	       
+	    /*     
+	         if(a.isEmpty()){
+	        	 System.out.println("is not a valied profile id-doesnot exist");
+	        	 return p;
+	         }
+	        	 
+	         else{
+	        	 
+	        	 p=a;	        	 
+	                f.close();			
+			        System.out.println("is valieed profile id messages retriving");
+	         }*/
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error in getComments DataAccess server () "+e);
+		}
+		
+	         return p;
+    	
+    }
     
     
     

@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import ksu.chakravaram.DataAccess.DataAccess;
+import ksu.chakravaram.mappingclasses.Comments;
 import ksu.chakravaram.mappingclasses.Likes;
 import ksu.chakravaram.mappingclasses.Messages;
 import ksu.chakravaram.mappingclasses.Posts;
@@ -102,6 +103,17 @@ public class MessageResource {
 	}
 	
 	
+
+	@POST
+	@Path("/sendcmt")
+	@Consumes({MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_XML})
+	public IntegerResponse newCmt(Comments cmt)
+	{
+		IntegerResponse res=a.newCmt(cmt);
+		return res;
+	}
+	
 	
 	
 	
@@ -126,6 +138,19 @@ public class MessageResource {
 		return dao.getAllProfiles();
 	
 	}
+	
+	
+	@GET
+	@Path("/getcomments/{post_id}")
+	@Produces({MediaType.APPLICATION_XML})
+	public List<Comments> getComments(@PathParam("post_id") String post_id)
+	{
+		//System.out.println(""+header);
+		List<Comments> c=dao.getComments(Integer.parseInt(post_id.trim()));
+		return c;
+	
+	}
+	
 	
 
 	@GET
