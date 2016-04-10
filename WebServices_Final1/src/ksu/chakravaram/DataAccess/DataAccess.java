@@ -91,7 +91,8 @@ public class DataAccess {
 	         else{
 	        	 	Integer x=a.get(0);
 	        	 	flag=x;
-	                f.close();			
+	                f.close();		
+	                sf.close();
 			        System.out.println("is valied user");
 	         }
 			
@@ -127,7 +128,8 @@ public class DataAccess {
 	         else{
 	        	 
 	        	 p=a.get(0);	        	 
-	                f.close();			
+	                f.close();	
+	                sf.close();
 			        System.out.println("is valieed profile id");
 	         }
 		}
@@ -151,6 +153,7 @@ public class DataAccess {
 	        query1.setParameter(0, pid);
 	               p= query1.list();
 	               f.close();	
+	               sf.close();
 	       
 	    /*     
 	         if(a.isEmpty()){
@@ -191,7 +194,8 @@ public class DataAccess {
 	        	 System.out.println("successfully deleted profile"+pid);     	 
 	         else
   		        System.out.println("coud not delete profile"+pid);
-	         
+	         f.close();	
+             sf.close();
 			
 			}
 		catch(Exception e)
@@ -223,7 +227,9 @@ public class DataAccess {
 	       
 			f.save(p);
            f.beginTransaction().commit();
-			f.close();			
+			f.close();	
+			 	
+             sf.close();
 			System.out.println("profile creation success");
 			flag=1;
 	         
@@ -262,7 +268,8 @@ public class DataAccess {
 	       
 			f.save(p);
            f.beginTransaction().commit();
-			f.close();			
+           f.close();	
+           sf.close();			
 			System.out.println(" succeessfully posted!!");
 			flag=1;
 	         
@@ -291,7 +298,8 @@ public class DataAccess {
 	        
 	        	 
 	        	 p=a;	        	 
-	                f.close();			
+	        	 f.close();	
+	               sf.close();		
 			        System.out.println("is valieed profile id messages retriving");
 	         
 		}
@@ -316,7 +324,8 @@ public class DataAccess {
 	        
 	        	 
 	        		 p=a;       	 
-	                f.close();			
+	        		 f.close();	
+		               sf.close();			
 			        System.out.println("Getting All Profiles");
 	         		}
 		catch(Exception e)
@@ -341,7 +350,8 @@ public class DataAccess {
 	       
 			f.save(p);
            f.beginTransaction().commit();
-			f.close();			
+           f.close();	
+           sf.close();			
 			System.out.println(" succeessfully posted!!");
 			flag=1;
 	         
@@ -375,7 +385,8 @@ public class DataAccess {
 	         else{
 	        	 	
 	        	 	flag=1;
-	                f.close();			
+	        	 	 f.close();	
+		               sf.close();		
 			        System.out.println("Already Liked");
 	         }
 			
@@ -408,7 +419,8 @@ public class DataAccess {
 
 			f.save(l);
            f.beginTransaction().commit();
-			f.close();			
+           f.close();	
+           sf.close();			
 			System.out.println(" succeessfully posted!!");
 			flag=1;
 	         
@@ -440,7 +452,8 @@ public class DataAccess {
 	        	a=1;
 	       
 	           
-	         
+	        f.close();	
+            sf.close();
 			
 			
 			
@@ -469,7 +482,8 @@ public class DataAccess {
    	         list=query1.list();
    	       
    	           
-   	         
+   	      f.close();	
+          sf.close();
    			
    			
    			
@@ -498,7 +512,8 @@ public class DataAccess {
 	       
 			f.save(p);
            f.beginTransaction().commit();
-			f.close();			
+           f.close();	
+           sf.close();		
 			System.out.println(" succeessfully posted!!");
 			flag=1;
 	         
@@ -526,6 +541,7 @@ public class DataAccess {
 	        query1.setParameter(0, pid);
 	               p= query1.list();
 	               f.close();	
+	               sf.close();	
 	       
 	    /*     
 	         if(a.isEmpty()){
