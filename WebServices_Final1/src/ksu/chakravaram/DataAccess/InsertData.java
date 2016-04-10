@@ -40,13 +40,13 @@ public class InsertData {
 		st.setTo_profile_id(101);
 		st.setTime(new Date());
 	*/
-		/*	Posts st=new Posts();
-		st.setPost("this is a post from 101");
+		Posts st=new Posts();
+		st.setPost("Welcome All!");
 		st.setPost_id(301);
 		st.setProfile_id(101);
 		st.setTime(new Date());
 		
-		*/
+		
 		
 		Profiles p=new Profiles();
 		File file = new File("C:/Users/chakravaram/Desktop/vx.JPG");
@@ -60,13 +60,14 @@ public class InsertData {
         } catch (Exception e) {
 	     e.printStackTrace();
         }
-        p.setFirstname("vij");
-        p.setLastname("sdd");
+        p.setFirstname("vijay");
+        p.setLastname("chakravaram");
         p.setDob(new Date());
-        p.setPassword("123");
-        p.setPhno(123);
-        p.setProfile_id(01);
+        p.setPassword("vijay");
+        p.setPhno("3145707395");
+        p.setProfile_id(101);
         p.setImage(bFile);
+        p.setUsername("vijay");
         
 		
 		Configuration cfg=new Configuration().configure();
@@ -82,6 +83,7 @@ public class InsertData {
 		Session f=sf.openSession();
 		System.out.println("vijay1");
 	f.save(p);
+	f.save(st);
 	System.out.println("vijay12");
 	f.beginTransaction().commit();
 		f.close();

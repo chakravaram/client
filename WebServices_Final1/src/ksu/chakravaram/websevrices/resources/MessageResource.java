@@ -194,4 +194,28 @@ public class MessageResource {
 		return res;
 	}
 	
+	
+	///////////////////////// SECURED METHODS  ///////////
+	
+	@GET
+	@Path("/message/{profile_id}")
+	@Produces({MediaType.APPLICATION_XML})
+	public List<Messages> getMsga(@PathParam("profile_id") String profile_id)
+	{
+		int pid=Integer.parseInt(profile_id);
+		List<Messages> msgs=dao.getMessages(pid);
+		return msgs;
+	}
+	
+	@DELETE
+	@Path("/del/{profile_id}")
+	@Produces({MediaType.APPLICATION_XML})
+	public IntegerResponse delMsgs(@PathParam("profile_id") String profile_id)
+	{
+		int pid=Integer.parseInt(profile_id);
+		IntegerResponse res=a.delete(pid);
+		return res;
+	}
+	
+	
 }

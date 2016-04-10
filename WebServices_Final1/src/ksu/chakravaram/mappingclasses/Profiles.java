@@ -14,12 +14,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Profiles {
 
 	
+	public void Profiles()
+	{
+		
+	}
 	@Id
 	
 	private int profile_id;
 	private String firstname;
 	private String lastname;
-	private int phno;
+	private String phno;
 	private Date dob;
 	@Column(unique=true)
 	private String username;
@@ -81,11 +85,11 @@ public class Profiles {
 		this.lastname = lastname;
 	}
 
-	public int getPhno() {
+	public String getPhno() {
 		return phno;
 	}
 
-	public void setPhno(int phno) {
+	public void setPhno(String phno) {
 		this.phno = phno;
 	}
 

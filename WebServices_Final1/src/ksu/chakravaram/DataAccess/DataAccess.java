@@ -1,5 +1,6 @@
 package ksu.chakravaram.DataAccess;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -67,9 +68,10 @@ public class DataAccess {
 		return flag;
 		
 	}*/
-
+  
 	public int getProfileId(String username, String password)
 	{
+		
 		int flag=0;
 		try{
 			
@@ -105,7 +107,7 @@ public class DataAccess {
     
     public Profiles getProfile(int pid)
     {
-    	Profiles p=null;
+    	Profiles p=new Profiles();
 		try{
 			
 			Configuration cfg=new Configuration().configure("./hibernate.cfg.xml");				
@@ -116,6 +118,7 @@ public class DataAccess {
 	        
 	       
 	         List<Profiles> a= query1.list();
+	         
 	         if(a.isEmpty()){
 	        	 System.out.println("is not a valied profile id-doesnot exist");
 	        	 return p;
@@ -242,16 +245,20 @@ public class DataAccess {
 			Configuration cfg=new Configuration().configure("./hibernate.cfg.xml");				
 			SessionFactory sf=cfg.buildSessionFactory();			
 	        Session f=sf.openSession();	    
-	        Query query1=f.createQuery("select max(e.post_id) from Posts e");
+	 /*      Query query1=f.createQuery("select max(e.post_id) from Posts e");
 		       p.setTime(new Date());
 	         List<Integer> a= query1.list();
+	       
+	        	System.out.println("Error in cre notok");
 	         Integer x=a.get(0);
+	     	System.out.println("Error in cre ok1");
 	         int y=x;
 	         System.out.println("fffd");
 	         if(y>300)
 	        	 p.setPost_id(y+1);
-	         else
+	         else*/
 	        	 p.setPost_id(301);	 
+	        
 	       
 			f.save(p);
            f.beginTransaction().commit();
@@ -281,17 +288,12 @@ public class DataAccess {
 	       
 	       
 	         List<Posts> a= query1.list();
-	         if(a.isEmpty()){
-	        	 System.out.println(" there are no posts");
-	        	 return p;
-	         }
-	        	 
-	         else{
+	        
 	        	 
 	        	 p=a;	        	 
 	                f.close();			
 			        System.out.println("is valieed profile id messages retriving");
-	         }
+	         
 		}
 		catch(Exception e)
 		{
@@ -311,18 +313,12 @@ public class DataAccess {
 	        Session f=sf.openSession();	    
 	        Query query1=f.createQuery("select e from Profiles e");
 	        List<Profiles> a= query1.list();
-	         if(a.isEmpty()){
-	        	 System.out.println(" There are no profiles");
-	        	 return p;
-	         }
-	        	 
-	         else{
+	        
 	        	 
 	        		 p=a;       	 
 	                f.close();			
 			        System.out.println("Getting All Profiles");
-	         }
-		}
+	         		}
 		catch(Exception e)
 		{
 			System.out.println("Error in getALLProfileID"+e);
